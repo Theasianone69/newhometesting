@@ -197,12 +197,7 @@
 
     <script>
         function launch(disguiseTitle, url, favicon) {
-            const newTab = window.open('about:blank', '_blank');
-            if (!newTab) {
-                alert('Popup blocked! Please allow popups.');
-                return;
-            }
-
+            // Updated to overwrite the current document instead of opening a new tab
             const content = `
                 <!DOCTYPE html>
                 <html>
@@ -226,12 +221,12 @@
                 </body>
                 </html>`;
 
-            newTab.document.open();
-            newTab.document.write(content);
-            newTab.document.close();
+            document.open();
+            document.write(content);
+            document.close();
         }
 
-        // Panic key 'Q' for the dashboard
+        // Panic key 'Q' for the initial dashboard
         window.addEventListener('keydown', function(e) {
             if (e.key.toLowerCase() === 'q') {
                 window.location.href = 'https://classroom.google.com';
